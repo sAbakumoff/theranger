@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row font-weight-bold">
+    <div class="col-4 text-left">Hand type</div>
+    <div class="col-2 text-right">Range</div>
+    <div class="col-2 text-right">#Hands</div>
+    <div class="col-2 text-right">#Combos</div>
+    <div class="col-2 text-right">% Combos</div>
+  </div>
+  <app-range-row title="Pairs" [hands]="pairs" [multiplier]=6></app-range-row>
+  <app-range-row title="Suited Aces" [hands]="suitedAces" [multiplier]=4></app-range-row>
+</div>
+
+<router-outlet></router-outlet>
