@@ -7,8 +7,8 @@ import { RangeItem } from '../../interfaces/range';
   styleUrls: ['./range-row.component.css']
 })
 export class RangeRowComponent implements OnInit {
-  @Input() rangeItem : RangeItem;
-  @Output() rangeChanged : EventEmitter<{r : string, i : number}> = new EventEmitter<{r:string, i :number}>();
+  @Input() rangeItem: RangeItem;
+  @Output() rangeChanged: EventEmitter<{ r: string, i: number }> = new EventEmitter<{ r: string, i: number }>();
   currentHandInd = -1;
   constructor() { }
 
@@ -46,7 +46,7 @@ export class RangeRowComponent implements OnInit {
     if (this.currentHandInd < this.rangeItem.hands.length - 1) { this.currentHandInd++; this.emitChange(); }
   }
 
-  emitChange(){
-    this.rangeChanged.emit({r : this.rangeItem.name, i : this.currentHandInd});
+  emitChange() {
+    this.rangeChanged.emit({ r: this.rangeItem.name, i: this.currentHandInd });
   }
 }

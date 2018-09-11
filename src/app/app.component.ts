@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppStateService } from './services/app-state.service';
 
 @Component({
@@ -6,38 +6,40 @@ import { AppStateService } from './services/app-state.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'rangerator';
-  currentRangeObj : object;
-  constructor(private appStateService : AppStateService){
+  currentRangeObj: object;
+  constructor(private appStateService: AppStateService) {
 
   }
 
   ngOnInit() {
-    this.appStateService.CurrentRange.subscribe(range=>this.currentRangeObj = range)
+    this.appStateService.CurrentRange.subscribe(range => this.currentRangeObj = range);
   }
 
-  get rangeItems(){
+  get rangeItems() {
     return this.appStateService.structure;
   }
 
-  get amountOfHands() : number{
-    var ret = 0;
+  get amountOfHands(): number {
+    let ret = 0;
     this.appStateService.structure.forEach(rangeItem => {
-      var startInd = this.currentRangeObj[rangeItem.name];
-      if(startInd >= 0)
+      const startInd = this.currentRangeObj[rangeItem.name];
+      if (startInd >= 0) {
         ret += rangeItem.getNumberOfHands(startInd);
-    })
+      }
+    });
     return ret;
   }
 
-  get amountOfCombos() : number {
-    var ret = 0;
+  get amountOfCombos(): number {
+    let ret = 0;
     this.appStateService.structure.forEach(rangeItem => {
-      var startInd = this.currentRangeObj[rangeItem.name];
-      if(startInd >= 0)
+      const startInd = this.currentRangeObj[rangeItem.name];
+      if (startInd >= 0) {
         ret += rangeItem.getNumberOfCombos(startInd);
-    })
+      }
+    });
     return ret;
   }
 
@@ -45,17 +47,18 @@ export class AppComponent {
     return this.amountOfCombos / 1326;
   }
 
-  onSubrangeChanged(event : {r:string, i :number}){
+  onSubrangeChanged(event: { r: string, i: number }) {
     this.appStateService.setSubRangeStart(event);
   }
 
-  get currentRangeStr() : string{
-    var ret = [];
+  get currentRangeStr(): string {
+    const ret = [];
     this.appStateService.structure.forEach(rangeItem => {
-      var startInd = this.currentRangeObj[rangeItem.name];
-      if(startInd >= 0)
+      const startInd = this.currentRangeObj[rangeItem.name];
+      if (startInd >= 0) {
         ret.push(rangeItem.getNotation(startInd));
-    })
+      }
+    });
     return ret.join(', ');
   }
 
