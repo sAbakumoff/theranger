@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { RangeItem } from '../../interfaces/range';
 
 @Component({
   selector: 'app-range-row',
@@ -6,40 +7,46 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./range-row.component.css']
 })
 export class RangeRowComponent implements OnInit {
-  @Input() hands: Array<string>;
-  @Input() multiplier: number;
-  @Input() title: string;
-  currentHandInd = 0;
+  @Input() rangeItem : RangeItem;
+  @Output() rangeChanged : EventEmitter<{r : string, i : number}> = new EventEmitter<{r:string, i :number}>();
+  currentHandInd = -1;
   constructor() { }
 
   ngOnInit() {
+
   }
 
-  get currentHand() {
-    return this.hands && this.hands.length ? this.hands[this.currentHandInd] : '';
-  }
 
   get range() {
-    return this.currentHand + '+';
+    return this.rangeItem.getNotation(this.currentHandInd);
   }
 
   get amountOfHands() {
-    return this.currentHandInd + 1 + '';
+    return this.rangeItem.getNumberOfHands(this.currentHandInd);
   }
 
   get amountOfCombos() {
-    return this.multiplier * (this.currentHandInd + 1);
+    return this.rangeItem.getNumberOfCombos(this.currentHandInd);
   }
 
   get percentOfCombos() {
-    return this.amountOfCombos / 1326;
+    return this.rangeItem.getPercentOfCombos(this.currentHandInd);
   }
 
   onDown() {
-    if (this.currentHandInd > 0) { this.currentHandInd--; }
+    if (this.currentHandInd > 0) { this.currentHandInd--; this.emitChange(); }
+  }
+
+  onReset() {
+    this.currentHandInd = -1;
+    this.emitChange();
   }
 
   onUp() {
-    if (this.currentHandInd < this.hands.length - 1) { this.currentHandInd++; }
+    if (this.currentHandInd < this.rangeItem.hands.length - 1) { this.currentHandInd++; this.emitChange(); }
+  }
+
+  emitChange(){
+    this.rangeChanged.emit({r : this.rangeItem.name, i : this.currentHandInd});
   }
 }

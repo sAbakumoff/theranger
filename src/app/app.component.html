@@ -1,13 +1,22 @@
 <div class="container">
   <div class="row font-weight-bold">
-    <div class="col-4 text-left">Hand type</div>
-    <div class="col-2 text-right">Range</div>
+    <div class="col-2 text-right">Hand type</div>
+    <div class="col-4"></div>
     <div class="col-2 text-right">#Hands</div>
     <div class="col-2 text-right">#Combos</div>
     <div class="col-2 text-right">% Combos</div>
   </div>
-  <app-range-row title="Pairs" [hands]="pairs" [multiplier]=6></app-range-row>
-  <app-range-row title="Suited Aces" [hands]="suitedAces" [multiplier]=4></app-range-row>
+  <app-range-row *ngFor="let rangeItem of rangeItems"
+      [rangeItem]="rangeItem"
+      (rangeChanged)="onSubrangeChanged($event)">
+  </app-range-row>
+  <div class="row font-weight-bold">
+    <div class="col-2 text-right">Total</div>
+    <div class="col-4">{{currentRangeStr}}</div>
+    <div class="col-2 text-right">{{amountOfHands}}</div>
+    <div class="col-2 text-right">{{amountOfCombos}}</div>
+    <div class="col-2 text-right">{{percentOfCombos | percent : '1.2-2'}}</div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
