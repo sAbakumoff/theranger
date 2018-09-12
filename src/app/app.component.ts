@@ -7,7 +7,6 @@ import { AppStateService } from './services/app-state.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'rangerator';
   currentRangeObj: object;
   constructor(private appStateService: AppStateService) {
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { RangeItem } from '../../interfaces/range';
+import { RangeGroup } from '../../interfaces/range';
 
 @Component({
   selector: 'app-range-row',
@@ -7,7 +7,7 @@ import { RangeItem } from '../../interfaces/range';
   styleUrls: ['./range-row.component.css']
 })
 export class RangeRowComponent implements OnInit {
-  @Input() rangeItem: RangeItem;
+  @Input() rangeItem: RangeGroup;
   @Output() rangeChanged: EventEmitter<{ r: string, i: number }> = new EventEmitter<{ r: string, i: number }>();
   currentHandInd = -1;
   constructor() { }
