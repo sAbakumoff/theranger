@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppStateService } from './services/app-state.service';
+import { questions } from './resources/questions';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,10 @@ import { AppStateService } from './services/app-state.service';
 })
 export class AppComponent implements OnInit {
   currentRangeObj: object;
+  currentQuestion: object;
+  state = 0;
   constructor(private appStateService: AppStateService) {
-
+    this.currentQuestion = questions[0];
   }
 
   ngOnInit() {
@@ -55,10 +58,24 @@ export class AppComponent implements OnInit {
     this.appStateService.structure.forEach(rangeItem => {
       const startInd = this.currentRangeObj[rangeItem.name];
       if (startInd >= 0) {
-        ret.push(rangeItem.getNotation(startInd));
+        ret.push(rangeItem.getSummaryNotation(startInd));
       }
     });
     return ret.join(', ');
+  }
+
+  checkAnswer() {
+    if (this.currentRangeStr === this.currentQuestion['answer']) {
+      this.state = 1;
+    } else {
+      this.state = -1;
+    }
+  }
+
+  nextQuestion() {
+    this.state = 0;
+    this.currentQuestion = questions[0];
+    this.appStateService.reset();
   }
 
 }

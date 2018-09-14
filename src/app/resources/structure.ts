@@ -1,4 +1,7 @@
-import {CommonRangeGroup} from '../classes/range-group';
+import {
+  CommonRangeGroup,
+  SuitedHandsRangeGroup
+} from '../classes/range-group';
 
 export let data: CommonRangeGroup[] = [
   new CommonRangeGroup('pp', 'Pairs',
@@ -15,8 +18,12 @@ export let data: CommonRangeGroup[] = [
     ['Q2s', 'Q3s', 'Q4s', 'Q5s', 'Q6s', 'Q7s', 'Q8s', 'Q9s', 'QTs', 'QJs'].reverse(), 4),
   new CommonRangeGroup('qo', 'Offsuit Queens',
     ['Q2o', 'Q3o', 'Q4o', 'Q5o', 'Q6o', 'Q7o', 'Q8o', 'Q9o', 'QTo', 'QJo'].reverse(), 12),
-  new CommonRangeGroup('qs', 'Suited Jacks',
+  new CommonRangeGroup('js', 'Suited Jacks',
     ['J2s', 'J3s', 'J4s', 'J5s', 'J6s', 'J7s', 'J8s', 'J9s', 'JTs'].reverse(), 4),
-  new CommonRangeGroup('qo', 'Offsuit Jacks',
-    ['J2o', 'J3o', 'J4o', 'J5o', 'J6o', 'J7o', 'J8o', 'J9o', 'JTo'].reverse(), 12)
-  ];
+  new CommonRangeGroup('jo', 'Offsuit Jacks',
+    ['J2o', 'J3o', 'J4o', 'J5o', 'J6o', 'J7o', 'J8o', 'J9o', 'JTo'].reverse(), 12),
+  new SuitedHandsRangeGroup('sc', 'Suited Connectors',
+    ['32s', '43s', '54s', '65s', '76s', '87s', '98s', 'T9s'].reverse(), 4),
+  new SuitedHandsRangeGroup('s1g', 'Suited one gappers',
+    ['42s', '53s', '64s', '75s', '86s', '97s', 'T8s'].reverse(), 4)
+];

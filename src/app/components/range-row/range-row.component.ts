@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RangeGroup } from '../../interfaces/range';
-
+import { AppStateService } from '../../services/app-state.service';
 @Component({
   selector: 'app-range-row',
   templateUrl: './range-row.component.html',
@@ -10,10 +10,14 @@ export class RangeRowComponent implements OnInit {
   @Input() rangeItem: RangeGroup;
   @Output() rangeChanged: EventEmitter<{ r: string, i: number }> = new EventEmitter<{ r: string, i: number }>();
   currentHandInd = -1;
-  constructor() { }
+  constructor(private appStateService: AppStateService) { }
 
   ngOnInit() {
-
+    this.appStateService.CurrentRange.subscribe(range => {
+      if (!range.hasOwnProperty(this.rangeItem.name)) {
+        this.onReset();
+      }
+    });
   }
 
 

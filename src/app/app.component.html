@@ -1,14 +1,18 @@
 <div class="container">
-  <div class="row font-weight-bold">
+  <div class="row mt-3 justify-content-center">
+    <div class="col text-center">
+      <h2>{{currentQuestion.stackSize}}BB : {{currentQuestion.title}}</h2>
+      <button class="btn btn-info" (click)="nextQuestion()">Next</button>
+    </div>
+  </div>
+  <div class="row font-weight-bold mt-3">
     <div class="col-2 text-right">Hand type</div>
     <div class="col-4"></div>
     <div class="col-2 text-right">#Hands</div>
     <div class="col-2 text-right">#Combos</div>
     <div class="col-2 text-right">% Combos</div>
   </div>
-  <app-range-row *ngFor="let rangeItem of rangeItems"
-      [rangeItem]="rangeItem"
-      (rangeChanged)="onSubrangeChanged($event)">
+  <app-range-row *ngFor="let rangeItem of rangeItems" [rangeItem]="rangeItem" (rangeChanged)="onSubrangeChanged($event)">
   </app-range-row>
   <div class="row font-weight-bold">
     <div class="col-2 text-right">Total</div>
@@ -16,6 +20,21 @@
     <div class="col-2 text-right">{{amountOfHands}}</div>
     <div class="col-2 text-right">{{amountOfCombos}}</div>
     <div class="col-2 text-right">{{percentOfCombos | percent : '1.2-2'}}</div>
+  </div>
+  <div class="row justify-content-end">
+    <div class="col-2 text-right">
+      <button class="btn btn-success" (click)="checkAnswer()">Check</button>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="state===1">
+    <div class="col text-center">
+      <h3 class="text-success">Correct!</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="state===-1">
+    <div class="col text-center">
+      <h3 class="text-danger">Fail! The right answer is {{currentQuestion.answer}}</h3>
+    </div>
   </div>
 </div>
 

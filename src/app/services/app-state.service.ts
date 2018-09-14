@@ -7,7 +7,7 @@ import { data } from '../resources/structure';
   providedIn: 'root'
 })
 export class AppStateService {
-  private range  = {
+  private range = {
   };
   public CurrentRange: BehaviorSubject<object> = new BehaviorSubject(this.range);
 
@@ -17,10 +17,14 @@ export class AppStateService {
     return data;
   }
 
-  public setSubRangeStart(val: {r: string, i: number}) {
+  public setSubRangeStart(val: { r: string, i: number }) {
     this.range = Object.assign({}, this.range, {
-      [val.r] : val.i
+      [val.r]: val.i
     });
     this.CurrentRange.next(this.range);
+  }
+
+  public reset() {
+    this.CurrentRange.next({});
   }
 }
