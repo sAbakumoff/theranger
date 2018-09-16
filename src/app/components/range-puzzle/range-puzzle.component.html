@@ -1,0 +1,209 @@
+<div class="container">
+  <div class="row mt-3 justify-content-center">
+    <div class="col text-center">
+      <h2>{{currentQuestion.stackSize}}BB : {{currentQuestion.title}}</h2>
+      <button class="btn btn-info" (click)="check()">Check</button>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-2">
+    <table class="range" (click)="onClick($event)">
+      <tbody>
+        <tr>
+          <td class="pair border">AA</td>
+          <td class="suited border">AKs</td>
+          <td class="suited border">AQs</td>
+          <td class="suited border">AJs</td>
+          <td class="suited border">ATs</td>
+          <td class="suited border">A9s</td>
+          <td class="suited border">A8s</td>
+          <td class="suited border">A7s</td>
+          <td class="suited border">A6s</td>
+          <td class="suited border">A5s</td>
+          <td class="suited border">A4s</td>
+          <td class="suited border">A3s</td>
+          <td class="suited border">A2s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">AKo</td>
+          <td class="pair border">KK</td>
+          <td class="suited border">KQs</td>
+          <td class="suited border">KJs</td>
+          <td class="suited border">KTs</td>
+          <td class="suited border">K9s</td>
+          <td class="suited border">K8s</td>
+          <td class="suited border">K7s</td>
+          <td class="suited border">K6s</td>
+          <td class="suited border">K5s</td>
+          <td class="suited border">K4s</td>
+          <td class="suited border">K3s</td>
+          <td class="suited border">K2s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">AQo</td>
+          <td class="offsuit border">KQo</td>
+          <td class="pair border">QQ</td>
+          <td class="suited border">QJs</td>
+          <td class="suited border">QTs</td>
+          <td class="suited border">Q9s</td>
+          <td class="suited border">Q8s</td>
+          <td class="suited border">Q7s</td>
+          <td class="suited border">Q6s</td>
+          <td class="suited border">Q5s</td>
+          <td class="suited border">Q4s</td>
+          <td class="suited border">Q3s</td>
+          <td class="suited border">Q2s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">AJo</td>
+          <td class="offsuit border">KJo</td>
+          <td class="offsuit border">QJo</td>
+          <td class="pair border">JJ</td>
+          <td class="suited border">JTs</td>
+          <td class="suited border">J9s</td>
+          <td class="suited border">J8s</td>
+          <td class="suited border">J7s</td>
+          <td class="suited border">J6s</td>
+          <td class="suited border">J5s</td>
+          <td class="suited border">J4s</td>
+          <td class="suited border">J3s</td>
+          <td class="suited border">J2s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">ATo</td>
+          <td class="offsuit border">KTo</td>
+          <td class="offsuit border">QTo</td>
+          <td class="offsuit border">JTo</td>
+          <td class="pair border">TT</td>
+          <td class="suited border">T9s</td>
+          <td class="suited border">T8s</td>
+          <td class="suited border">T7s</td>
+          <td class="suited border">T6s</td>
+          <td class="suited border">T5s</td>
+          <td class="suited border">T4s</td>
+          <td class="suited border">T3s</td>
+          <td class="suited border">T2s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A9o</td>
+          <td class="offsuit border">K9o</td>
+          <td class="offsuit border">Q9o</td>
+          <td class="offsuit border">J9o</td>
+          <td class="offsuit border">T9o</td>
+          <td class="pair border">99</td>
+          <td class="suited border">98s</td>
+          <td class="suited border">97s</td>
+          <td class="suited border">96s</td>
+          <td class="suited border">95s</td>
+          <td class="suited border">94s</td>
+          <td class="suited border">93s</td>
+          <td class="suited border">92s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A8o</td>
+          <td class="offsuit border">K8o</td>
+          <td class="offsuit border">Q8o</td>
+          <td class="offsuit border">J8o</td>
+          <td class="offsuit border">T8o</td>
+          <td class="offsuit border">98o</td>
+          <td class="pair border">88</td>
+          <td class="suited border">87s</td>
+          <td class="suited border">86s</td>
+          <td class="suited border">85s</td>
+          <td class="suited border">84s</td>
+          <td class="suited border">83s</td>
+          <td class="suited border">82s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A7o</td>
+          <td class="offsuit border">K7o</td>
+          <td class="offsuit border">Q7o</td>
+          <td class="offsuit border">J7o</td>
+          <td class="offsuit border">T7o</td>
+          <td class="offsuit border">97o</td>
+          <td class="offsuit border">87o</td>
+          <td class="pair border">77</td>
+          <td class="suited border">76s</td>
+          <td class="suited border">75s</td>
+          <td class="suited border">74s</td>
+          <td class="suited border">73s</td>
+          <td class="suited border">72s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A6o</td>
+          <td class="offsuit border">K6o</td>
+          <td class="offsuit border">Q6o</td>
+          <td class="offsuit border">J6o</td>
+          <td class="offsuit border">T6o</td>
+          <td class="offsuit border">96o</td>
+          <td class="offsuit border">86o</td>
+          <td class="offsuit border">76o</td>
+          <td class="pair border">66</td>
+          <td class="suited border">65s</td>
+          <td class="suited border">64s</td>
+          <td class="suited border">63s</td>
+          <td class="suited border">62s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A5o</td>
+          <td class="offsuit border">K5o</td>
+          <td class="offsuit border">Q5o</td>
+          <td class="offsuit border">J5o</td>
+          <td class="offsuit border">T5o</td>
+          <td class="offsuit border">95o</td>
+          <td class="offsuit border">85o</td>
+          <td class="offsuit border">75o</td>
+          <td class="offsuit border">65o</td>
+          <td class="pair border">55</td>
+          <td class="suited border">54s</td>
+          <td class="suited border">53s</td>
+          <td class="suited border">52s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A4o</td>
+          <td class="offsuit border">K4o</td>
+          <td class="offsuit border">Q4o</td>
+          <td class="offsuit border">J4o</td>
+          <td class="offsuit border">T4o</td>
+          <td class="offsuit border">94o</td>
+          <td class="offsuit border">84o</td>
+          <td class="offsuit border">74o</td>
+          <td class="offsuit border">64o</td>
+          <td class="offsuit border">54o</td>
+          <td class="pair border">44</td>
+          <td class="suited border">43s</td>
+          <td class="suited border">42s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A3o</td>
+          <td class="offsuit border">K3o</td>
+          <td class="offsuit border">Q3o</td>
+          <td class="offsuit border">J3o</td>
+          <td class="offsuit border">T3o</td>
+          <td class="offsuit border">93o</td>
+          <td class="offsuit border">83o</td>
+          <td class="offsuit border">73o</td>
+          <td class="offsuit border">63o</td>
+          <td class="offsuit border">53o</td>
+          <td class="offsuit border">43o</td>
+          <td class="pair border">33</td>
+          <td class="suited border">32s</td>
+        </tr>
+        <tr>
+          <td class="offsuit border">A2o</td>
+          <td class="offsuit border">K2o</td>
+          <td class="offsuit border">Q2o</td>
+          <td class="offsuit border">J2o</td>
+          <td class="offsuit border">T2o</td>
+          <td class="offsuit border">92o</td>
+          <td class="offsuit border">82o</td>
+          <td class="offsuit border">72o</td>
+          <td class="offsuit border">62o</td>
+          <td class="offsuit border">52o</td>
+          <td class="offsuit border">42o</td>
+          <td class="offsuit border">32o</td>
+          <td class="pair border">22</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -12,7 +12,11 @@ export class AppComponent implements OnInit {
   currentQuestion: object;
   state = 0;
   constructor(private appStateService: AppStateService) {
-    this.currentQuestion = questions[0];
+    this.currentQuestion = this.selectRandonQuestion();
+  }
+
+  private selectRandonQuestion() {
+    return questions[Math.floor(Math.random() * questions.length)];
   }
 
   ngOnInit() {
@@ -74,7 +78,7 @@ export class AppComponent implements OnInit {
 
   nextQuestion() {
     this.state = 0;
-    this.currentQuestion = questions[0];
+    this.currentQuestion = this.selectRandonQuestion();
     this.appStateService.reset();
   }
 

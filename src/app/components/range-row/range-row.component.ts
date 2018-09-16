@@ -50,6 +50,11 @@ export class RangeRowComponent implements OnInit {
     if (this.currentHandInd < this.rangeItem.hands.length - 1) { this.currentHandInd++; this.emitChange(); }
   }
 
+  onIncludeAll() {
+    this.currentHandInd = this.rangeItem.hands.length - 1;
+    this.emitChange();
+  }
+
   emitChange() {
     this.rangeChanged.emit({ r: this.rangeItem.name, i: this.currentHandInd });
   }
