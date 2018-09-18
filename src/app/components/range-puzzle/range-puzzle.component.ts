@@ -12,7 +12,11 @@ const prange = require('prange');
 export class RangePuzzleComponent implements OnInit {
   currentQuestion: object;
   currentQuestionRange: string[];
-  tbl: any;
+  tbl = '#tblRange';
+  type1errors = 0;
+  type2errors = 0;
+  completed = false;
+  combos = 0;
   constructor() {
     this.selectRandonQuestion();
   }
@@ -20,29 +24,49 @@ export class RangePuzzleComponent implements OnInit {
   ngOnInit() {
   }
   private selectRandonQuestion() {
-    this.currentQuestion = questions[Math.floor(Math.random() * questions.length)];
+    this.currentQuestion = questions[0]; // questions[Math.floor(Math.random() * questions.length)];
     this.currentQuestionRange = prange(this.currentQuestion['answer']);
-    // console.log(this.currentQuestionRange);
   }
   onClick(event) {
-    this.tbl = event.currentTarget;
     const target = event.target || event.srcElement || event.currentTarget;
     target.classList.toggle('bg-info');
-    /*if (target.classList.contains('pair')) {
-      target.classList.add('bg-success');
-    }*/
+    let c = 0;
+    $(this.tbl).find('td.bg-info').each(() => {
+      const hand = $(this).text();
+      if (hand.endsWith('o')) {
+        c += 12;
+      } else if (hand.endsWith('s')) {
+        c += 4;
+      } else {
+        c += 6;
+      }
+    });
+    this.combos = c;
   }
   check() {
     const givenAnswer = $(this.tbl).find('.bg-info').map(function () { return this.innerText; }).get();
     const missing = this.currentQuestionRange.filter(item => givenAnswer.indexOf(item) < 0);
-    $(this.tbl).find('td').filter(function () {
+    this.type1errors = $(this.tbl).find('td').filter(function () {
       return missing.indexOf($(this).text()) >= 0;
-    }).addClass('bg-warning');
+    }).addClass('bg-warning').length;
 
     const extra = givenAnswer.filter(i => this.currentQuestionRange.indexOf(i) < 0);
-    $(this.tbl).find('td').filter(function () {
+    this.type2errors = $(this.tbl).find('td').filter(function () {
       return extra.indexOf($(this).text()) >= 0;
-    }).addClass('bg-danger');
+    }).addClass('bg-danger').length;
 
+    this.completed = true;
+
+  }
+
+  next() {
+    $(this.tbl).find('td').removeClass('bg-info').removeClass('bg-danger').removeClass('bg-warning');
+    this.selectRandonQuestion();
+    this.completed = false;
+    this.combos = 0;
+  }
+
+  get combosShare() {
+    return this.combos / 1326;
   }
 }

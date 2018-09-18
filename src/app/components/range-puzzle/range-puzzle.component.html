@@ -2,12 +2,20 @@
   <div class="row mt-3 justify-content-center">
     <div class="col text-center">
       <h2>{{currentQuestion.stackSize}}BB : {{currentQuestion.title}}</h2>
-      <button class="btn btn-info" (click)="check()">Check</button>
+      <button class="btn btn-success" (click)="check()" *ngIf="!completed">Check</button>
+      <button class="btn btn-primary" (click)="next()" *ngIf="completed">Next</button>
+      <div class="row justify-content-center" *ngIf="completed">
+        <div class="col-2 text-warning">Overlooked : {{type1errors}}</div>
+        <div class="col-2 text-danger">Extra: {{type2errors}}</div>
+      </div>
     </div>
   </div>
   <div class="row justify-content-center mt-2">
-    <table class="range" (click)="onClick($event)">
+    <table id="tblRange" class="range" (click)="onClick($event)">
       <tbody>
+        <tr>
+          <td class="text-center border" colspan=13>{{combosShare | percent : '1.2-2' }}</td>
+        </tr>
         <tr>
           <td class="pair border">AA</td>
           <td class="suited border">AKs</td>
